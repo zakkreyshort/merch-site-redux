@@ -10,7 +10,7 @@ function Item(props){
       <button type="submit">Buy</button>
       <button type="submit">Restock</button>
     </React.Fragment>
-  )
+  );
 }
 
 Item.propTypes = {
