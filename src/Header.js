@@ -2,7 +2,11 @@ import React from "react";
 
 function Header(){
   return (
-    <h1>Earth Day Merch</h1>
+    <React.Fragment>
+      <div className="header">
+        <h1>Earth Day Merch</h1>
+      </div>
+    </React.Fragment>
   );
 }
 
