@@ -58,6 +58,6 @@ _Open the contents of the directory in a text editor or IDE of your choice (e.g.
 
 ### License
 
-*This webpage is licensed under the MIT license.*
+[MIT](https://choosealicense.com/licenses/mit/)
 
-Copyright &copy; 2020 **_Michelle Morin, Benjamin Thom, Brandan Sayarath_ 
+Copyright (c) 2020 **_Michelle Morin, Benjamin Thom, Brandan Sayarath_ 
