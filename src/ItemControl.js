@@ -7,17 +7,25 @@ class ItemControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // fill in later with state info
+      formVisibleOnPage: false
     };
   }
 
   render(){
+    let currentlyVisibleState = null;
+    if (this.state.formVisibleOnPage) {
+      currentlyVisibleState = <NewItemForm />
+    } else {
+      currentlyVisibleState = <ItemList />
+    }
+
     return (
       <React.Fragment>
-
+        {currentlyVisibleState}
       </React.Fragment>
     );
   }
+  
 }
 
 
