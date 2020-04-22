@@ -7,8 +7,17 @@ class ItemControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false
+      formVisibleOnPage: false,
+      masterItemList: []
     };
+  }
+
+  handleAddingNewItemToList = (newItem) => {
+    const newMasterItemList = this.state.masterItemList.concat(newItem);
+    this.setState({
+      masterItemList: newMasterItemList,
+      formVisibleOnPage: false
+    });
   }
 
   handleClick = () => {
@@ -21,10 +30,10 @@ class ItemControl extends React.Component {
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewItemForm />
+      currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleAddingNewItemToList}/>
       buttonText = "return to items";
     } else {
-      currentlyVisibleState = <ItemList />
+      currentlyVisibleState = <ItemList itemList={this.state.masterItemList} />
       buttonText = "add new item";
     }
 
