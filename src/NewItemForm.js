@@ -18,8 +18,6 @@ function NewItemForm(props){
     width: '40vw',
     margin: 'auto auto',
     backgroundColor: 'transparent',
-    outline: 'none',
-    boxShadow: 'none',
     padding: '5%',
     marginBottom: '2%'
   }
@@ -41,7 +39,7 @@ function NewItemForm(props){
             type='number'
             name='quantity'
             placeholder='initial quantity' />
-          <button className="buttonStyles" type='submit'>add item</button>
+          <button className="formButton" type='submit'>add item</button>
         </form>
       </div>
     </React.Fragment>

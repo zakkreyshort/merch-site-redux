@@ -4,10 +4,13 @@ import PropTypes from 'prop-types';
 function Item(props){
 
   const itemStyles = {
-    height: '200px',
-    width: '200px',
-    border: '1px solid #7FBC76',
-    padding: '5%',
+    height: '150px',
+    width: '150px',
+    border: '1px solid #82CA81',
+    textAlign: 'center',
+    padding: '2%',
+    marginBottom: '1em',
+    marginTop: '1em'
   }
 
   return (
