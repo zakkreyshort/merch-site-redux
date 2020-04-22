@@ -6,7 +6,7 @@ function Item(props){
     <React.Fragment>
       <p>{props.name}</p>
       <p>{props.description}</p>
-      <p>{props.quantity}</p>
+      <p>Quantity: {props.quantity}</p>
       <button type="submit">Buy</button>
       <button type="submit">Restock</button>
     </React.Fragment>

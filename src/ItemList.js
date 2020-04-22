@@ -1,6 +1,6 @@
 import React from "react";
 import Item from "./Item";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 const masterItemList = [
   {
@@ -14,7 +14,7 @@ const masterItemList = [
     quantity: 25    
   },
   {
-    name: "Earth Day Water Bottle",
+    name: "Clean water for all Water Bottle",
     description: "An earth-friendly way to stay hydrated",
     quantity: 7
   }
