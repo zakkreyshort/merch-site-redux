@@ -8,9 +8,7 @@ function App() {
   return (
     <React.Fragment>
       <Header/>
-      <div className="storeFront">
-        <ItemControl/>
-      </div>
+      <ItemControl/>
       <Footer/>
     </React.Fragment>
   )

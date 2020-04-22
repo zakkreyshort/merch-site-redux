@@ -27,6 +27,14 @@ class ItemControl extends React.Component {
   }
 
   render(){
+
+    const itemControlStyles = {
+      position: 'relative',
+      top: '30vh',
+      margin: '2%',
+      overflowY: 'auto'
+    }
+
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.formVisibleOnPage) {
@@ -34,14 +42,18 @@ class ItemControl extends React.Component {
       buttonText = "return to items";
     } else {
       currentlyVisibleState = <ItemList itemList={this.state.masterItemList} />
-      buttonText = "add new item";
+      buttonText = "+";
     }
 
     return (
       <React.Fragment>
-        <div className="storeFront">
-          {currentlyVisibleState}
-          <button onClick={this.handleClick}>{buttonText}</button>
+        <div style={itemControlStyles}>
+          <div class="adjustableButton">
+            <button onClick={this.handleClick}>{buttonText}</button>
+          </div>
+          <div className="storeFront">
+            {currentlyVisibleState}
+          </div>
         </div>
       </React.Fragment>
     );

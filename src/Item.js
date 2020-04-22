@@ -6,8 +6,7 @@ function Item(props){
   const itemStyles = {
     height: '200px',
     width: '200px',
-    border: '1px solid #f5f5f5',
-    borderRadius: '5px',
+    border: '1px solid #7FBC76',
     padding: '5%',
   }
 
