@@ -10,6 +10,9 @@ _This application..._
 ## Component Tree
 ![component tree](merch-site-diagram.jpg)
 
+## Wireframe Design
+![wireframe](merch-site-design.png)
+
 ## Specification User Stories
 * A user should be able to create, read, update, and delete items in the store.
 * A user should be able to buy an item in the store, which reduces item quantity by 1.
