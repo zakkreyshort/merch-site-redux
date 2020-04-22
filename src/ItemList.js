@@ -1,30 +1,11 @@
 import React from "react";
 import Item from "./Item";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
-const masterItemList = [
-  {
-    name: "Earth day t-shirt",
-    description: "100% hemp",
-    quantity: 14
-  },
-  {
-    name: "Save the planet hat",
-    description: "made with recycled materials",
-    quantity: 25    
-  },
-  {
-    name: "Clean water for all Water Bottle",
-    description: "An earth-friendly way to stay hydrated",
-    quantity: 7
-  }
-];
-
-function ItemList(){
+function ItemList(props){
   return (
     <React.Fragment>
-      <hr />
-      {masterItemList.map((element, index) => 
+      {props.itemList.map((element, index) => 
         <Item name={element.name}
           description={element.description}
           quantity={element.quantity}
@@ -32,6 +13,10 @@ function ItemList(){
       )}
     </React.Fragment>
   );
+}
+
+ItemList.propTypes = {
+  itemList: PropTypes.array
 }
 
 export default ItemList;
