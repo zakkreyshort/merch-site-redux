@@ -60,4 +60,4 @@ _Open the contents of the directory in a text editor or IDE of your choice (e.g.
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-Copyright (c) 2020 **_Michelle Morin, Benjamin Thom, Brandan Sayarath_ 
+Copyright (c) 2020 **_Michelle Morin, Benjamin Thom, Brandan Sayarath_** 
