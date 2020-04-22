@@ -60,4 +60,4 @@ _Open the contents of the directory in a text editor or IDE of your choice (e.g.
 
 *This webpage is licensed under the MIT license.*
 
-Copyright &copy; 2020 **_Michelle Morin, Benjamin Thom, Brandan Sayarath   
+Copyright &copy; 2020 **_Michelle Morin, Benjamin Thom, Brandan Sayarath_ 
