@@ -60,7 +60,7 @@ class ItemControl extends React.Component {
     } else {
       currentlyVisibleState = <ItemList 
         itemList={this.state.masterItemList} 
-        onItemSelection={this.this.handleChangingSelectedItem} />
+        onItemSelection={this.handleChangingSelectedItem} />
       buttonText = "+";
     }
 

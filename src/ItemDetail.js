@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function ItemDetail(props){
-  const { item } = prop;
+  const { item } = props;
 
-  retun (
+  return (
     <React.Fragment>
-      <h1>{item.name}</h1>
-      <p>{item.description}</p>
-      <p>{item.quantity}</p>
+      {/* <div style={itemDetailStyles}> */}
+        <h1>{item.name}</h1>
+        <p>{item.description}</p>
+        <p>{item.quantity}</p>
+      {/* </div> */}
     </React.Fragment>
   );
 }
