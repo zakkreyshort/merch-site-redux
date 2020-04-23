@@ -57,7 +57,8 @@ class ItemControl extends React.Component {
     if (this.state.selectedItem !== null) {
       this.setState({
         formVisibleOnPage: false,
-        selectedItem: null
+        selectedItem: null,
+        editing: false
       });
     } else {
       this.setState(prevState => ({
