@@ -1,6 +1,7 @@
 import React from 'react';
 import { v4 } from 'uuid';
 import PropTypes from 'prop-types';
+import ReusableForm from './ReusableForm';
 
 function NewItemForm(props){
 
@@ -14,34 +15,11 @@ function NewItemForm(props){
     });
   }
 
-  const newItemFormStyles = {
-    width: '40vw',
-    margin: 'auto auto',
-    backgroundColor: 'transparent',
-    padding: '5%',
-    marginBottom: '2%'
-  }
-
   return (
     <React.Fragment>
-      <div style={newItemFormStyles}>
-        <form onSubmit={handleNewItemFormSubmission}>
-          <img src="https://img.icons8.com/metro/26/000000/pencil.png" alt='pencil icon' />
-          <input
-            type='text'
-            name='name'
-            placeholder='item name' />
-          <input
-            type='text'
-            name='description'
-            placeholder='item description' />
-          <input
-            type='number'
-            name='quantity'
-            placeholder='initial quantity' />
-          <button className="formButton" type='submit'>add item</button>
-        </form>
-      </div>
+      <ReusableForm
+        formSubmissionHandler={handleNewItemFormSubmission}
+        buttonText="add item" />
     </React.Fragment>
   );
 }
