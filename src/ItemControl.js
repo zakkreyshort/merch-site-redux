@@ -10,8 +10,14 @@ class ItemControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       masterItemList: [],
-      selectedItem: null
+      selectedItem: null,
+      editing: false
     };
+  }
+
+  handleEditClick = () => {
+    console.log("handleEditClick reached!");
+    this.setState({editing: true});
   }
 
   handleDeletingItem = (id) => {
@@ -60,7 +66,8 @@ class ItemControl extends React.Component {
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.selectedItem != null) {
-      currentlyVisibleState = <ItemDetail item = {this.state.selectedItem} onClickingDelete = {this.handleDeletingItem} />
+      currentlyVisibleState = <ItemDetail item = {this.state.selectedItem} onClickingDelete = {this.handleDeletingItem}
+      onClickEdit = {this.handleEditClick} />
       buttonText = "return to items";
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleAddingNewItemToList}/>
