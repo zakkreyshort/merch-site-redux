@@ -21,6 +21,17 @@ class ItemControl extends React.Component {
     this.setState({editing: true});
   }
 
+  handleEditingItemInList = (itemToEdit) => {
+    const editedMasterItemList = this.state.masterItemList
+      .filter(ticket => ticket.id !== this.state.selectedItem.id)
+      .concat(itemToEdit);
+    this.setState({
+      masterItemList: editedMasterItemList,
+      editing: false,
+      selectedItem: null
+    });
+  }
+
   handleDeletingItem = (id) => {
     const newMasterItemList = this.state.masterItemList.filter(item => item.id !== id);
     this.setState({
@@ -68,14 +79,19 @@ class ItemControl extends React.Component {
     let buttonText = null;
     
     if (this.state.editing) {
-      currentlyVisibleState = <EditItemForm item = {this.state.selectedItem} />
+      currentlyVisibleState = <EditItemForm 
+        item = {this.state.selectedItem}
+        onEditItem = {this.handleEditingItemInList} />
       buttonText = "return to items";
     } else if (this.state.selectedItem != null) {
-      currentlyVisibleState = <ItemDetail item = {this.state.selectedItem} onClickingDelete = {this.handleDeletingItem}
-      onClickingEdit = {this.handleEditClick} />
+      currentlyVisibleState = <ItemDetail 
+        item = {this.state.selectedItem} 
+        onClickingDelete = {this.handleDeletingItem}
+        onClickingEdit = {this.handleEditClick} />
       buttonText = "return to items";
     } else if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleAddingNewItemToList}/>
+      currentlyVisibleState = <NewItemForm 
+        onNewItemCreation={this.handleAddingNewItemToList}/>
       buttonText = "return to items";
     } else {
       currentlyVisibleState = <ItemList 
