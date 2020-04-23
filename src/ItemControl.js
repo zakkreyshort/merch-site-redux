@@ -2,6 +2,7 @@ import React from 'react';
 import NewItemForm from './NewItemForm.js';
 import ItemList from './ItemList.js';
 import ItemDetail from './ItemDetail';
+import EditItemForm from './EditItemFrom';
 
 class ItemControl extends React.Component {
 
@@ -65,7 +66,11 @@ class ItemControl extends React.Component {
 
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.selectedItem != null) {
+    
+    if (this.state.editing) {
+      currentlyVisibleState = <EditItemForm item = {this.state.selectedItem} />
+      buttonText = "return to items";
+    } else if (this.state.selectedItem != null) {
       currentlyVisibleState = <ItemDetail item = {this.state.selectedItem} onClickingDelete = {this.handleDeletingItem}
       onClickingEdit = {this.handleEditClick} />
       buttonText = "return to items";
