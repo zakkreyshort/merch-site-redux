@@ -2,7 +2,7 @@ import React from 'react';
 import NewItemForm from './NewItemForm.js';
 import ItemList from './ItemList.js';
 import ItemDetail from './ItemDetail';
-import EditItemForm from './EditItemFrom';
+import EditItemForm from './EditItemForm';
 
 class ItemControl extends React.Component {
 
@@ -16,6 +16,20 @@ class ItemControl extends React.Component {
     };
   }
 
+  handleClick = () => {
+    if (this.state.selectedItem !== null) {
+      this.setState({
+        formVisibleOnPage: false,
+        selectedItem: null,
+        editing: false
+      });
+    } else {
+      this.setState(prevState => ({
+        formVisibleOnPage: !prevState.formVisibleOnPage
+      }));
+    }
+  }
+
   handleEditClick = () => {
     console.log("handleEditClick reached!");
     this.setState({editing: true});
@@ -23,7 +37,7 @@ class ItemControl extends React.Component {
 
   handleEditingItemInList = (itemToEdit) => {
     const editedMasterItemList = this.state.masterItemList
-      .filter(ticket => ticket.id !== this.state.selectedItem.id)
+      .filter(item => item.id !== this.state.selectedItem.id)
       .concat(itemToEdit);
     this.setState({
       masterItemList: editedMasterItemList,
@@ -51,20 +65,6 @@ class ItemControl extends React.Component {
       masterItemList: newMasterItemList,
       formVisibleOnPage: false
     });
-  }
-
-  handleClick = () => {
-    if (this.state.selectedItem !== null) {
-      this.setState({
-        formVisibleOnPage: false,
-        selectedItem: null,
-        editing: false
-      });
-    } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage
-      }));
-    }
   }
 
   render(){
@@ -104,7 +104,7 @@ class ItemControl extends React.Component {
     return (
       <React.Fragment>
         <div style={itemControlStyles}>
-          <div class="adjustableButton">
+          <div className="adjustableButton">
             <button onClick={this.handleClick}>{buttonText}</button>
           </div>
           <div className="storeFront">
