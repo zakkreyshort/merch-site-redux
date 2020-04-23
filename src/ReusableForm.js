@@ -10,7 +10,7 @@ function ReusableForm(props) {
     padding: '5%',
     marginBottom: '2%'
   }
-  
+
   return (
     <React.Fragment>
       <div style={formStyles}>
@@ -19,15 +19,15 @@ function ReusableForm(props) {
             <input
               type='text'
               name='name'
-              placeholder='item name' />
+              placeholder='item name' required />
             <input
               type='text'
               name='description'
-              placeholder='item description' />
+              placeholder='item description' required />
             <input
               type='number'
               name='quantity'
-              placeholder='initial quantity' />
+              placeholder='initial quantity' required />
             <button className="formButton" type='submit'>{props.buttonText}</button>
         </form>
       </div>

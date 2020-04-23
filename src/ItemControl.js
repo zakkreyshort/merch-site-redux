@@ -36,6 +36,7 @@ class ItemControl extends React.Component {
   }
 
   handleEditingItemInList = (itemToEdit) => {
+    console.log("reached handle editing item in list");
     const editedMasterItemList = this.state.masterItemList
       .filter(item => item.id !== this.state.selectedItem.id)
       .concat(itemToEdit);
@@ -43,6 +44,28 @@ class ItemControl extends React.Component {
       masterItemList: editedMasterItemList,
       editing: false,
       selectedItem: null
+    });
+  }
+
+  handleItemPurchase = (id) => {
+    const currentlySelectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
+    const newQuantityOfItem = currentlySelectedItem.quantity - 1;
+    const updatedItem = {...currentlySelectedItem, quantity: newQuantityOfItem};
+    const previousItemList = this.state.masterItemList.filter(item => item.id !== id);
+    this.setState({
+      masterItemList: [...previousItemList, updatedItem],
+      selectedItem: updatedItem
+    });
+  }
+
+  handleItemRestock = (id) => {
+    const currentlySelectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
+    const newQuantityOfItem = currentlySelectedItem.quantity + 10;
+    const updatedItem = {...currentlySelectedItem, quantity: newQuantityOfItem};
+    const previousItemList = this.state.masterItemList.filter(item => item.id !== id);
+    this.setState({
+      masterItemList: [...previousItemList, updatedItem],
+      selectedItem: updatedItem
     });
   }
 
@@ -97,7 +120,9 @@ class ItemControl extends React.Component {
     } else {
       currentlyVisibleState = <ItemList 
         itemList={this.state.masterItemList} 
-        onItemSelection={this.handleChangingSelectedItem} />
+        onItemSelection={this.handleChangingSelectedItem}
+        onClickingBuy={this.handleItemPurchase}
+        onClickingRestock={this.handleItemRestock} />
       buttonText = "+";
     }
 

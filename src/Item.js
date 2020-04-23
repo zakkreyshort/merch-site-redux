@@ -21,8 +21,8 @@ function Item(props){
           <p>{props.description}</p>
           <p>Quantity: {props.quantity}</p>
           <div className="buttons">
-            <button type="submit">Buy</button>
-            <button type="submit">Restock</button>
+            <button onClick={()=> props.whenBuyClicked(props.id)} type="submit">Buy</button>
+            <button onClick={()=> props.whenRestockClicked(props.id)} type="submit">Restock</button> 
           </div>
         </div>
       </div>
@@ -35,7 +35,9 @@ Item.propTypes = {
   description: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
   id: PropTypes.string,
-  whenItemClicked: PropTypes.func
+  whenItemClicked: PropTypes.func,
+  whenBuyClicked: PropTypes.func,
+  whenRestockClicked: PropTypes.func
 }
 
 export default Item;
