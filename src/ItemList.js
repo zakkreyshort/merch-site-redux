@@ -21,6 +21,6 @@ function ItemList(props){
 ItemList.propTypes = {
   itemList: PropTypes.array,
   onItemSelection: PropTypes.func
-}
+};
 
 export default ItemList;
