@@ -1,6 +1,7 @@
 import React from 'react';
 import NewItemForm from './NewItemForm.js';
 import ItemList from './ItemList.js';
+import ItemDetail from './ItemDetail';
 
 class ItemControl extends React.Component {
 
@@ -8,8 +9,14 @@ class ItemControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      masterItemList: []
+      masterItemList: [],
+      selectedItem: null
     };
+  }
+
+  handleChangingSelectedItem = (id) => {
+    const selectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
+    this.setState({selectedItem: selectedItem}); 
   }
 
   handleAddingNewItemToList = (newItem) => {
@@ -37,11 +44,16 @@ class ItemControl extends React.Component {
 
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.formVisibleOnPage) {
+    if (this.state.selectedItem != null) {
+      currentlyVisibleState = <ItemDetail item = {this.state.selectedItem} />
+      buttonText = "return to items";
+    } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleAddingNewItemToList}/>
       buttonText = "return to items";
     } else {
-      currentlyVisibleState = <ItemList itemList={this.state.masterItemList} />
+      currentlyVisibleState = <ItemList 
+        itemList={this.state.masterItemList} 
+        onItemSelection={this.this.handleChangingSelectedItem} />
       buttonText = "+";
     }
 
