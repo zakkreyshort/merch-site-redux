@@ -1,6 +1,8 @@
 import React from 'react';
 import NewItemForm from './NewItemForm.js';
 import ItemList from './ItemList.js';
+import ItemDetail from './ItemDetail';
+import EditItemForm from './EditItemForm';
 
 class ItemControl extends React.Component {
 
@@ -8,8 +10,76 @@ class ItemControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      masterItemList: []
+      masterItemList: [],
+      selectedItem: null,
+      editing: false
     };
+  }
+
+  handleClick = () => {
+    if (this.state.selectedItem !== null) {
+      this.setState({
+        formVisibleOnPage: false,
+        selectedItem: null,
+        editing: false
+      });
+    } else {
+      this.setState(prevState => ({
+        formVisibleOnPage: !prevState.formVisibleOnPage
+      }));
+    }
+  }
+
+  handleEditClick = () => {
+    console.log("handleEditClick reached!");
+    this.setState({editing: true});
+  }
+
+  handleEditingItemInList = (itemToEdit) => {
+    console.log("reached handle editing item in list");
+    const editedMasterItemList = this.state.masterItemList
+      .filter(item => item.id !== this.state.selectedItem.id)
+      .concat(itemToEdit);
+    this.setState({
+      masterItemList: editedMasterItemList,
+      editing: false,
+      selectedItem: null
+    });
+  }
+
+  handleItemPurchase = (id) => {
+    const currentlySelectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
+    const newQuantityOfItem = currentlySelectedItem.quantity - 1;
+    const updatedItem = {...currentlySelectedItem, quantity: newQuantityOfItem};
+    const previousItemList = this.state.masterItemList.filter(item => item.id !== id);
+    this.setState({
+      masterItemList: [...previousItemList, updatedItem],
+      selectedItem: updatedItem
+    });
+  }
+
+  handleItemRestock = (id) => {
+    const currentlySelectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
+    const newQuantityOfItem = currentlySelectedItem.quantity + 10;
+    const updatedItem = {...currentlySelectedItem, quantity: newQuantityOfItem};
+    const previousItemList = this.state.masterItemList.filter(item => item.id !== id);
+    this.setState({
+      masterItemList: [...previousItemList, updatedItem],
+      selectedItem: updatedItem
+    });
+  }
+
+  handleDeletingItem = (id) => {
+    const newMasterItemList = this.state.masterItemList.filter(item => item.id !== id);
+    this.setState({
+      masterItemList: newMasterItemList,
+      selectedItem: null
+    });
+  }
+
+  handleChangingSelectedItem = (id) => {
+    const selectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
+    this.setState({selectedItem: selectedItem}); 
   }
 
   handleAddingNewItemToList = (newItem) => {
@@ -18,12 +88,6 @@ class ItemControl extends React.Component {
       masterItemList: newMasterItemList,
       formVisibleOnPage: false
     });
-  }
-
-  handleClick = () => {
-    this.setState(prevState => ({
-      formVisibleOnPage: !prevState.formVisibleOnPage
-    }));
   }
 
   render(){
@@ -37,18 +101,35 @@ class ItemControl extends React.Component {
 
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleAddingNewItemToList}/>
+    
+    if (this.state.editing) {
+      currentlyVisibleState = <EditItemForm 
+        item = {this.state.selectedItem}
+        onEditItem = {this.handleEditingItemInList} />
+      buttonText = "return to items";
+    } else if (this.state.selectedItem != null) {
+      currentlyVisibleState = <ItemDetail 
+        item = {this.state.selectedItem} 
+        onClickingDelete = {this.handleDeletingItem}
+        onClickingEdit = {this.handleEditClick} />
+      buttonText = "return to items";
+    } else if (this.state.formVisibleOnPage) {
+      currentlyVisibleState = <NewItemForm 
+        onNewItemCreation={this.handleAddingNewItemToList}/>
       buttonText = "return to items";
     } else {
-      currentlyVisibleState = <ItemList itemList={this.state.masterItemList} />
+      currentlyVisibleState = <ItemList 
+        itemList={this.state.masterItemList} 
+        onItemSelection={this.handleChangingSelectedItem}
+        onClickingBuy={this.handleItemPurchase}
+        onClickingRestock={this.handleItemRestock} />
       buttonText = "+";
     }
 
     return (
       <React.Fragment>
         <div style={itemControlStyles}>
-          <div class="adjustableButton">
+          <div className="adjustableButton">
             <button onClick={this.handleClick}>{buttonText}</button>
           </div>
           <div className="storeFront">

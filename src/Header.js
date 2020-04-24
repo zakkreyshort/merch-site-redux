@@ -21,8 +21,8 @@ function Header(){
           <a href="#">Partners</a>
           <a href="#">Products</a>
         </div>
-        <div class="brand-section">
-          <h1>Earth<span class="merch">Merch</span></h1>
+        <div className="brand-section">
+          <h1>Earth<span className="merch">Merch</span></h1>
           <div className="mission-statement">
             <p>Our mission? To build the world’s largest environmental movement to drive transformative change for people and planet.</p>
             <p>We take time and care to consider where and how things are made, who makes them and what they are made out of.</p>

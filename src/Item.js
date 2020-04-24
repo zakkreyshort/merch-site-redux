@@ -15,13 +15,15 @@ function Item(props){
 
   return (
     <React.Fragment>
-      <div style={itemStyles}>
-        <p>{props.name}</p>
-        <p>{props.description}</p>
-        <p>Quantity: {props.quantity}</p>
-        <div className="buttons">
-          <button type="submit">Buy</button>
-          <button type="submit">Restock</button>
+      <div onClick = {() => props.whenItemClicked(props.id)}>
+        <div style={itemStyles}>
+          <p>{props.name}</p>
+          <p>{props.description}</p>
+          <p>Quantity: {props.quantity}</p>
+          <div className="buttons">
+            <button onClick={()=> props.whenBuyClicked(props.id)} type="submit">Buy</button>
+            <button onClick={()=> props.whenRestockClicked(props.id)} type="submit">Restock</button> 
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -31,7 +33,11 @@ function Item(props){
 Item.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired
+  quantity: PropTypes.number.isRequired,
+  id: PropTypes.string,
+  whenItemClicked: PropTypes.func,
+  whenBuyClicked: PropTypes.func,
+  whenRestockClicked: PropTypes.func
 }
 
 export default Item;
