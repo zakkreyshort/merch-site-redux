@@ -10,6 +10,17 @@ describe('itemListReducer', () => {
         id: "1"
     };
 
+    const currentState = {
+      "1": {name: 'TestName1',
+        description: 'Test',
+        quantity: 1,
+        id: "1"},
+        "2": {name: "TestItem",
+            description: "Test",
+            quantity: 2,
+        id: "2"}
+    }
+
 test('Should return default state if no action is passed to reducer', () => {
   expect(itemListReducer({}, {type: null})).toEqual({});
 });
@@ -32,6 +43,19 @@ test('Should successfully add new item to masterItemList', () => {
       id: id
     }
   });
+});
+
+test('Should successfully delete an item', () => {
+    action={
+        type: 'DELETE_ITEM',
+        id: "1"
+    };
+    expect(itemListReducer(currentState, action)).toEqual({
+        "2": {name: 'TestItem',
+        description: 'Test',
+        quantity: 2,
+        id: "2" }
+    });
 });
 
 });
