@@ -60,7 +60,7 @@ class ItemControl extends React.Component {
 
   handleItemRestock = (id) => {
     const currentlySelectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
-    const newQuantityOfItem = currentlySelectedItem.quantity + 10;
+    const newQuantityOfItem = parseInt(currentlySelectedItem.quantity) + 10;
     const updatedItem = {...currentlySelectedItem, quantity: newQuantityOfItem};
     const previousItemList = this.state.masterItemList.filter(item => item.id !== id);
     this.setState({
