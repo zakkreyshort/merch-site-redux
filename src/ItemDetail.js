@@ -15,9 +15,8 @@ function ItemDetail(props){
         <button onClick={()=> onClickingDelete(item.id)}>Remove Item</button>
         <button onClick={ props.onClickingEdit }>Update Item Details</button>
        </div> 
-      )
       </React.Fragment>
-  );
+      );
 }
 
 ItemDetail.propTypes = {

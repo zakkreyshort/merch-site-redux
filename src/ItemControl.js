@@ -40,13 +40,13 @@ class ItemControl extends React.Component {
 
   handleEditingItemInList = (itemToEdit) => {
     const { dispatch } = this.props;
-    const { id, name, description, quantity } = itemToEdit;
+    const { id, quantity, name, description } = itemToEdit;
     const action = {
       type: 'ADD_ITEM',
       id: id,
-      name: name, 
-      description: description,
       quantity: quantity,
+      name: name, 
+      description: description
     }
     dispatch(action);
     this.setState({
