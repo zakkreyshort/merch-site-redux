@@ -3,6 +3,7 @@ import Item from "./Item";
 import PropTypes from "prop-types";
 
 function ItemList(props){
+  const { item, onClickingDelete } = props;
   return (
   <React.Fragment>
       {Object.values(props.itemList).map((item) => 

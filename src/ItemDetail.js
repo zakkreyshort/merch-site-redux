@@ -6,14 +6,17 @@ function ItemDetail(props){
 
   return (
     <React.Fragment>
-      {/* <div style={itemDetailStyles}> */}
+      {/* {Object.values(props.selectedItem).map((item) =>  */}
+      
+       <div> 
         <h1>{item.name}</h1>
         <p>{item.description}</p>
         <p>{item.quantity}</p>
         <button onClick={()=> onClickingDelete(item.id)}>Remove Item</button>
         <button onClick={ props.onClickingEdit }>Update Item Details</button>
-      {/* </div> */}
-    </React.Fragment>
+       </div> 
+      )
+      </React.Fragment>
   );
 }
 

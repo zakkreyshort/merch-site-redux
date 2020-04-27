@@ -53,35 +53,42 @@ class ItemControl extends React.Component {
       editing: false,
       selectedItem: null
     });
+    console.log(this.props.masterItemList)
   }
 
 
   handleItemPurchase = (id) => {
-    const currentlySelectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
-    const newQuantityOfItem = currentlySelectedItem.quantity - 1;
-    const updatedItem = {...currentlySelectedItem, quantity: newQuantityOfItem};
-    const previousItemList = this.state.masterItemList.filter(item => item.id !== id);
-    this.setState({
-      masterItemList: [...previousItemList, updatedItem],
-      selectedItem: updatedItem
-    });
+   const { dispatch } = this.props;
+   const currentlySelectedItem = Object.values(this.props.masterItemList).filter(item => item.id === id)[0];
+   const action = {
+     type: 'ADD_ITEM',
+     id: id,
+     quantity: currentlySelectedItem.quantity - 1,
+     name: currentlySelectedItem.name,
+     description: currentlySelectedItem.description
+   }
+    dispatch(action);
+    this.setState({selectedItem: null});
   }
 
   handleItemRestock = (id) => {
-    const currentlySelectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
-    const newQuantityOfItem = parseInt(currentlySelectedItem.quantity) + 10;
-    const updatedItem = {...currentlySelectedItem, quantity: newQuantityOfItem};
-    const previousItemList = this.state.masterItemList.filter(item => item.id !== id);
-    this.setState({
-      masterItemList: [...previousItemList, updatedItem],
-      selectedItem: updatedItem
-    });
-  }
+    const { dispatch } = this.props;
+    const currentlySelectedItem = Object.values(this.props.masterItemList).filter(item => item.id === id)[0];
+    const action = {
+      type: 'ADD_ITEM',
+      id: id,
+      quantity: currentlySelectedItem.quantity + 10,
+      name: currentlySelectedItem.name,
+      description: currentlySelectedItem.description
+    }
+     dispatch(action);
+     this.setState({selectedItem: null});
+   }
 
   handleDeletingItem = (id) => {
     const { dispatch } = this.props;
     const action = {
-      type: 'DELETE_TICKET',
+      type: 'DELETE_ITEM',
       id: id
     }
     dispatch(action);
